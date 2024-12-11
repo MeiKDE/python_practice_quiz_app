@@ -10,18 +10,24 @@ class QuizBrain:
         self.current_question = None
 
     def still_has_questions(self):
-        return self.question_number < len(self.question_list)
+        return self.question_number < len(
+            self.question_list
+        )  # checks against total list count
 
     def next_question(self):
-        self.current_question = self.question_list[self.question_number]
+        self.current_question = self.question_list[
+            self.question_number
+        ]  # gets the 1st question
+        # print(f"check question number: {self.question_number}")  # Check question_number
         self.question_number += 1
         q_text = html.unescape(self.current_question.text)
+        # print(f"Check value for this - Q.{self.question_number}: {q_text} (True/False): ")
         return f"Q.{self.question_number}: {q_text} (True/False): "
 
         # user_answer = input(f"Q.{self.question_number}: {q_text} (True/False): ")
         # self.check_answer(user_answer)
 
-    def check_answer(self, user_answer):
+    def check_answer(self, user_answer):  # user_answer of True or False
         correct_answer = self.current_question.answer
         if user_answer.lower() == correct_answer.lower():
             self.score += 1
